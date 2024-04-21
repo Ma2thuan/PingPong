@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=3 uid="uid://cf02nsdvh5h5t"]
+
+[ext_resource type="Script" path="res://scenes/game_over_screen.gd" id="1_iaorh"]
+[ext_resource type="FontFile" uid="uid://cwd1tkm36irny" path="res://assets/pixel_font.ttf" id="1_xnxud"]
+[ext_resource type="AudioStream" uid="uid://dlcxoewuuxoj" path="res://sounds/winningSound.mp3" id="3_0evql"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iera3"]
+bg_color = Color(0, 0, 0, 1)
+border_color = Color(0, 0.917647, 0.866667, 1)
+
+[node name="GameOverScreen" type="CanvasLayer"]
+script = ExtResource("1_iaorh")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_iera3")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="Rows" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/Rows"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_xnxud")
+theme_override_font_sizes/font_size = 60
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/MarginContainer/Rows"]
+layout_mode = 2
+
+[node name="RowsBtn" type="VBoxContainer" parent="PanelContainer/MarginContainer/Rows/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Restart" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/RowsBtn"]
+layout_mode = 2
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("1_xnxud")
+theme_override_font_sizes/font_size = 25
+text = "RESTART"
+
+[node name="Quit" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/RowsBtn"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_xnxud")
+theme_override_font_sizes/font_size = 25
+text = "QUIT"
+
+[node name="GameOverAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_0evql")
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/RowsBtn/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/RowsBtn/Quit" to="." method="_on_quit_pressed"]
