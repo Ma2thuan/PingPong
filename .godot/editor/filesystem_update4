@@ -1,0 +1,5 @@
+res://scenes/main.tscn
+res://scenes/main.gd
+res://scenes/Player.gd
+res://scenes/Ball.gd
+res://scenes/CPU.gd
