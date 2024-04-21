@@ -39,6 +39,8 @@ func _physics_process(delta):
 		if collider == $"../CPU" or collider == $"../Player":
 			speed += ACCEL
 			dir = new_direction(collider)
+			$AudioStreamPlayer2D.play()
+			
 		else: #nếu trúng tường
 			dir = dir.bounce(collision.get_normal())
 	
